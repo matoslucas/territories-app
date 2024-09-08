@@ -1,0 +1,22 @@
+[
+  {
+    "name": "2025 Revenue Plan",
+    "lastEdited": "2 hours ago",
+    "tam": "$100,000,000",
+    "revenueTarget": "$65,000,000",
+    "precision": 75,
+    "employees": 145,
+    "teamCost": "$29,000,000",
+    "roi": "2.24X"
+  },
+  {
+    "name": "2025 SDR Plan",
+    "lastEdited": "3 days ago",
+    "tam": "$100,000,000",
+    "revenueTarget": "$65,000,000",
+    "precision": 65,
+    "employees": 145,
+    "teamCost": "$29,000,000",
+    "roi": "2.24X"
+  }
+]

@@ -1,0 +1,28 @@
+// Custom Bootstrap Variables
+
+// Colors
+$primary: #ff5b5b;
+$secondary: #2c3e50;
+$background: #f8f9fa;
+$gray: #6c757d;
+
+// Override Bootstrap's theme colors
+$theme-colors: (
+  'primary': $primary,
+  'secondary': $secondary,
+  'gray': $gray,
+);
+
+// Define the custom color variables
+$icon-color-primary: #ff5b5b; // Example for icons in the sidebar
+$icon-color-secondary: #2c3e50; // For icons in secondary sections
+$icon-hover-color: #ff7675; // Color on hover
+
+// Override Bootstrap Icons default styles
+.bi {
+  color: $icon-color-primary; // Apply default color to all Bootstrap icons
+
+  &:hover {
+    color: $icon-hover-color; // Apply hover color to all icons
+  }
+}
