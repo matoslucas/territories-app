@@ -67,6 +67,7 @@ export default {
 <style scoped>
 .main-content {
   flex-grow: 1;
-  padding: 20px;
+  padding: 0;
+  background-color: #f9f9fb;
 }
 </style>
