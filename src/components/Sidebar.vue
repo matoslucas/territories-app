@@ -64,6 +64,8 @@
         @toggle="toggleMenu('help')"
       />
     </ul>
+    <!-- Space  -->
+    <div style="display: flex; height: 100%"></div>
 
     <!-- Sidebar footer -->
     <SidebarFooter :isCollapsed="isCollapsed" />
@@ -71,10 +73,10 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import SidebarHeader from './SidebarHeader.vue';
-import SidebarItem from './SidebarItem.vue';
-import SidebarFooter from './SidebarFooter.vue';
+import { ref } from "vue";
+import SidebarHeader from "./SidebarHeader.vue";
+import SidebarItem from "./SidebarItem.vue";
+import SidebarFooter from "./SidebarFooter.vue";
 
 export default {
   components: {

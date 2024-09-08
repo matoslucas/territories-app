@@ -77,11 +77,19 @@ export default {
 .nav-link.active {
   color: #ff6666;
   font-weight: bold;
+  background-color: #f9f9fb;
+  border-radius: 2px;
+}
+.nav-link:hover {
+  color: #ff6666;
+  font-weight: bold;
+  background-color: #f9f9fb;
+  border-radius: 2px;
 }
 .submenu {
   padding-left: 2.3rem;
   list-style: none;
-  margin-top: 0;
+  margin-top: 0.5rem;
 }
 .submenu-link {
   display: block;

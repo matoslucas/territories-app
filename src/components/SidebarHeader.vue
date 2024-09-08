@@ -8,8 +8,8 @@
       <i
         :class="
           isCollapsed
-            ? 'bi bi-chevron-double-right'
-            : 'bi bi-chevron-double-left'
+            ? 'bi-secondary bi-chevron-double-right'
+            : 'bi-secondary bi-chevron-double-left'
         "
       ></i>
     </button>
@@ -38,27 +38,34 @@ export default {
 </script>
 
 <style scoped>
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
 .logo-container {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  width: 100%;
 }
 .logo {
   width: 30px;
   height: 30px;
 }
 .logo-text {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-left: 10px;
+  font-size: 1rem;
+  width: 100%;
+  min-width: 170px;
 }
 .btn-toggle {
   background: none;
-  border: none;
+  border: 1px solid #f7f7f7;
+  border-radius: 3px;
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
-  width: 100%;
   margin-bottom: 1rem;
 }
 </style>

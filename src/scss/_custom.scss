@@ -27,3 +27,18 @@ p {
     border-color: $primary;
   }
 }
+// Override Bootstrap Icons default styles
+.bi {
+  color: $icon-color-primary;   // Apply default color to all Bootstrap icons
+
+  &:hover {
+    color: $icon-hover-color;   // Apply hover color to all icons
+  }
+}
+.bi-secondary {
+  color: $icon-color-secondary;   
+
+  &:hover {
+    color: $icon-hover-color;   // Apply hover color to all icons
+  }
+}
