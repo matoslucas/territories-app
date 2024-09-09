@@ -10,6 +10,8 @@ const activeMenus = ref({
   data: false,
   settings: false,
   help: false,
+  workspace: false,
+  logout: false,
 });
 const activeSubmenu = ref(null);
 
@@ -18,8 +20,15 @@ const toggleSidebar = () => {
   isCollapsed.value = !isCollapsed.value;
 };
 
-// Function to toggle menus
+// Function to toggle menus, ensuring only one menu is active at a time
 const toggleMenu = (menu) => {
+  // Deactivate all other menus
+  for (const key in activeMenus.value) {
+    if (key !== menu) {
+      activeMenus.value[key] = false;
+    }
+  }
+  // Toggle the selected menu
   activeMenus.value[menu] = !activeMenus.value[menu];
 };
 
@@ -36,7 +45,6 @@ const setActiveSubmenu = (submenu) => {
     <!-- Navigation items -->
     <ul class="nav flex-column">
       <SidebarItem
-        :isCollapsed="isCollapsed"
         :isActive="activeMenus.plan"
         icon="bi bi-clipboard"
         title="Plan"
@@ -53,7 +61,6 @@ const setActiveSubmenu = (submenu) => {
       />
 
       <SidebarItem
-        :isCollapsed="isCollapsed"
         :isActive="activeMenus.accounts"
         icon="bi bi-people"
         title="Accounts"
@@ -63,7 +70,6 @@ const setActiveSubmenu = (submenu) => {
       <hr style="margin: 0.5rem 0" />
 
       <SidebarItem
-        :isCollapsed="isCollapsed"
         :isActive="activeMenus.data"
         icon="bi bi-database"
         title="Data"
@@ -78,7 +84,6 @@ const setActiveSubmenu = (submenu) => {
       />
 
       <SidebarItem
-        :isCollapsed="isCollapsed"
         :isActive="activeMenus.settings"
         icon="bi bi-gear"
         title="Settings"
@@ -87,7 +92,6 @@ const setActiveSubmenu = (submenu) => {
       />
 
       <SidebarItem
-        :isCollapsed="isCollapsed"
         :isActive="activeMenus.help"
         icon="bi bi-question-circle"
         title="Need Help?"
@@ -99,25 +103,23 @@ const setActiveSubmenu = (submenu) => {
     <!-- Space  -->
     <div style="height: 100%"></div>
 
+    <!-- Sidebar footer -->
     <ul class="nav flex-column">
-      <!-- Sidebar footer -->
       <SidebarItem
-        :isCollapsed="isCollapsed"
-        :isActive="activeMenus.help"
+        :isActive="activeMenus.workspace"
         icon="bi bi-person"
         title="Workspace Name"
         :hasSubmenu="false"
-        @toggle="$parent.toggleMenu('WorkspaceName')"
+        @toggle="$parent.toggleMenu('workspace')"
       />
       <hr style="margin: 0.5rem 0" />
 
       <SidebarItem
-        :isCollapsed="isCollapsed"
-        :isActive="activeMenus.help"
+        :isActive="activeMenus.logout"
         icon="bi bi-box-arrow-right"
         title="Log Out"
         :hasSubmenu="false"
-        @toggle="$parent.toggleMenu('Logout')"
+        @toggle="$parent.toggleMenu('logout')"
       />
     </ul>
   </aside>

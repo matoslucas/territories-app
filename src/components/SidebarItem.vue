@@ -1,6 +1,8 @@
 <script setup>
+import { ref } from 'vue';
+
+// Define props excluding isCollapsed
 const props = defineProps({
-  isCollapsed: Boolean,
   isActive: Boolean,
   icon: String,
   title: String,
@@ -11,7 +13,16 @@ const props = defineProps({
 
 const emit = defineEmits(["toggle", "setActiveSubmenu"]);
 
+// Define internal isCollapsed state
+const isCollapsed = ref(false);
+
+// Function to toggle isCollapsed state
+const toggleCollapse = () => {
+  isCollapsed.value = !isCollapsed.value;
+};
+
 const toggleMenu = () => {
+ 
   emit("toggle");
 };
 
@@ -25,18 +36,19 @@ const setActiveSubmenu = (submenu) => {
     <a
       href="#"
       class="nav-link"
-      @click="toggleMenu"
+     
       :class="{ active: isActive }"
     >
       <i :class="icon"></i>
-      <span v-if="!isCollapsed">{{ title }}</span>
+      <span @click="toggleMenu">{{ title }}</span>
       <i
-        v-if="!isCollapsed && hasSubmenu"
+      @click="toggleCollapse"
+        v-if="hasSubmenu"
         class="bi"
-        :class="isActive ? 'bi-chevron-up' : 'bi-chevron-down'"
+        :class="!isCollapsed ? 'bi-chevron-up' : 'bi-chevron-down'"
       ></i>
     </a>
-    <ul v-if="isActive && hasSubmenu" class="submenu">
+    <ul v-if="!isCollapsed && hasSubmenu" class="submenu">
       <li
         v-for="item in submenu"
         :key="item.name"
