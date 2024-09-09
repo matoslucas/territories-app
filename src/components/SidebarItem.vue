@@ -1,3 +1,25 @@
+<script setup>
+const props = defineProps({
+  isCollapsed: Boolean,
+  isActive: Boolean,
+  icon: String,
+  title: String,
+  hasSubmenu: Boolean,
+  submenu: Array,
+  activeSubmenu: String,
+});
+
+const emit = defineEmits(["toggle", "setActiveSubmenu"]);
+
+const toggleMenu = () => {
+  emit("toggle");
+};
+
+const setActiveSubmenu = (submenu) => {
+  emit("setActiveSubmenu", submenu);
+};
+</script>
+
 <template>
   <li class="nav-item">
     <a
@@ -28,35 +50,6 @@
   </li>
 </template>
 
-<script>
-export default {
-  props: {
-    isCollapsed: Boolean,
-    isActive: Boolean,
-    icon: String,
-    title: String,
-    hasSubmenu: Boolean,
-    submenu: Array,
-    activeSubmenu: String,
-  },
-  emits: ['toggle', 'setActiveSubmenu'],
-  setup(props, { emit }) {
-    const toggleMenu = () => {
-      emit('toggle');
-    };
-
-    const setActiveSubmenu = (submenu) => {
-      emit('setActiveSubmenu', submenu);
-    };
-
-    return {
-      toggleMenu,
-      setActiveSubmenu,
-    };
-  },
-};
-</script>
-
 <style scoped>
 .nav-link {
   display: flex;
@@ -66,31 +59,37 @@ export default {
   color: #6c757d;
   transition: padding 0.3s ease, color 0.3s ease;
 }
+
 .nav-link i {
   margin-right: 10px;
 }
+
 .nav-link span {
   width: 100%;
   text-align: left;
   transition: opacity 0.3s ease;
 }
+
 .nav-link.active {
   color: #ff6666;
   font-weight: bold;
   background-color: #f9f9fb;
   border-radius: 2px;
 }
+
 .nav-link:hover {
   color: #ff6666;
   font-weight: bold;
   background-color: #f9f9fb;
   border-radius: 2px;
 }
+
 .submenu {
   padding-left: 2.3rem;
   list-style: none;
   margin-top: 0.5rem;
 }
+
 .submenu-link {
   display: block;
   padding: 5px 0;
@@ -98,26 +97,33 @@ export default {
   text-decoration: none;
   position: relative;
   font-weight: 400;
-  padding-left: 15px; /* Create space for vertical line */
+  padding-left: 15px;
+  /* Create space for vertical line */
   width: 100%;
   text-align: left;
 }
+
 .submenu-link::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -20px;
   top: 0;
   height: 100%;
   width: 2px;
-  background-color: #d3d3d3; /* Grey for inactive state */
+  background-color: #d3d3d3;
+  /* Grey for inactive state */
   transition: background-color 0.3s ease;
 }
+
 .submenu-link::before:hover {
   background-color: #ff6666;
 }
+
 .submenu-active .submenu-link::before {
-  background-color: #ff6666; /* Red for active state */
+  background-color: #ff6666;
+  /* Red for active state */
 }
+
 .submenu-active .submenu-link {
   color: #ff6666;
 }
@@ -125,6 +131,7 @@ export default {
 .submenu-link:hover::before {
   background-color: #ff6666;
 }
+
 .submenu-link:hover {
   color: #ff6666;
 }

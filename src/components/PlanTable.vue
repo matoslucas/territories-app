@@ -1,3 +1,11 @@
+<script setup>
+defineProps({
+  plans: {
+    type: Array,
+    required: true,
+  },
+});
+</script>
 <template>
   <div>
     <div class="table-responsive">
@@ -43,19 +51,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  props: {
-    plans: {
-      type: Array,
-      required: true,
-    },
-  },
-});
-</script>
 
 <style scoped>
 .table {

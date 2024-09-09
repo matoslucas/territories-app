@@ -1,3 +1,9 @@
+<script setup>
+const props = defineProps({
+  isCollapsed: Boolean,
+});
+</script>
+
 <template>
   <div class="sidebar-footer">
     <div class="workspace">
@@ -10,14 +16,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    isCollapsed: Boolean,
-  },
-};
-</script>
 
 <style scoped>
 .sidebar-footer {

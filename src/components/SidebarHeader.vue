@@ -1,3 +1,18 @@
+<script setup>
+const props = defineProps({
+  isCollapsed: {
+    type: Boolean,
+    required: true,
+  },
+});
+
+const emit = defineEmits(["toggleSidebar"]);
+
+const toggleSidebar = () => {
+  emit("toggleSidebar");
+};
+</script>
+
 <template>
   <div class="sidebar-header">
     <div class="logo-container">
@@ -15,27 +30,6 @@
     </button>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    isCollapsed: {
-      type: Boolean,
-      required: true,
-    },
-  },
-  emits: ['toggleSidebar'],
-  setup(props, { emit }) {
-    const toggleSidebar = () => {
-      emit('toggleSidebar');
-    };
-
-    return {
-      toggleSidebar,
-    };
-  },
-};
-</script>
 
 <style scoped>
 .sidebar-header {

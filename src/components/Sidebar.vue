@@ -1,3 +1,35 @@
+<script setup>
+import { ref } from "vue";
+import SidebarHeader from "./SidebarHeader.vue";
+import SidebarItem from "./SidebarItem.vue";
+import SidebarFooter from "./SidebarFooter.vue";
+
+// Import components directly without the need for an export default block
+const isCollapsed = ref(false);
+const activeMenus = ref({
+  plan: false,
+  accounts: false,
+  data: false,
+  settings: false,
+  help: false,
+});
+const activeSubmenu = ref(null);
+
+// Function to toggle the sidebar
+const toggleSidebar = () => {
+  isCollapsed.value = !isCollapsed.value;
+};
+
+// Function to toggle menus
+const toggleMenu = (menu) => {
+  activeMenus.value[menu] = !activeMenus.value[menu];
+};
+
+// Function to set the active submenu
+const setActiveSubmenu = (submenu) => {
+  activeSubmenu.value = submenu;
+};
+</script>
 <template>
   <aside :class="['sidebar', isCollapsed ? 'collapsed' : '']">
     <!-- Sidebar header -->
@@ -71,53 +103,6 @@
     <SidebarFooter :isCollapsed="isCollapsed" />
   </aside>
 </template>
-
-<script>
-import { ref } from "vue";
-import SidebarHeader from "./SidebarHeader.vue";
-import SidebarItem from "./SidebarItem.vue";
-import SidebarFooter from "./SidebarFooter.vue";
-
-export default {
-  components: {
-    SidebarHeader,
-    SidebarItem,
-    SidebarFooter,
-  },
-  setup() {
-    const isCollapsed = ref(false);
-    const activeMenus = ref({
-      plan: false,
-      accounts: false,
-      data: false,
-      settings: false,
-      help: false,
-    });
-    const activeSubmenu = ref(null);
-
-    const toggleSidebar = () => {
-      isCollapsed.value = !isCollapsed.value;
-    };
-
-    const toggleMenu = (menu) => {
-      activeMenus.value[menu] = !activeMenus.value[menu];
-    };
-
-    const setActiveSubmenu = (submenu) => {
-      activeSubmenu.value = submenu;
-    };
-
-    return {
-      isCollapsed,
-      activeMenus,
-      activeSubmenu,
-      toggleSidebar,
-      toggleMenu,
-      setActiveSubmenu,
-    };
-  },
-};
-</script>
 
 <style scoped>
 .sidebar {
