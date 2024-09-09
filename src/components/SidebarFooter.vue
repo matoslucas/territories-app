@@ -1,11 +1,15 @@
 <script setup>
+import SidebarItem from "./SidebarItem.vue";
+
 const props = defineProps({
   isCollapsed: Boolean,
 });
+
 </script>
 
 <template>
   <div class="sidebar-footer">
+   
     <div class="workspace">
       <i class="bi bi-person"></i>
       <span v-if="!isCollapsed">Workspace Name</span>

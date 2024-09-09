@@ -2,9 +2,7 @@
 import { ref } from "vue";
 import SidebarHeader from "./SidebarHeader.vue";
 import SidebarItem from "./SidebarItem.vue";
-import SidebarFooter from "./SidebarFooter.vue";
 
-// Import components directly without the need for an export default block
 const isCollapsed = ref(false);
 const activeMenus = ref({
   plan: false,
@@ -62,6 +60,7 @@ const setActiveSubmenu = (submenu) => {
         :hasSubmenu="false"
         @toggle="toggleMenu('accounts')"
       />
+      <hr style="margin: 0.5rem 0" />
 
       <SidebarItem
         :isCollapsed="isCollapsed"
@@ -96,11 +95,31 @@ const setActiveSubmenu = (submenu) => {
         @toggle="toggleMenu('help')"
       />
     </ul>
-    <!-- Space  -->
-    <div style="display: flex; height: 100%"></div>
 
-    <!-- Sidebar footer -->
-    <SidebarFooter :isCollapsed="isCollapsed" />
+    <!-- Space  -->
+    <div style="height: 100%"></div>
+
+    <ul class="nav flex-column">
+      <!-- Sidebar footer -->
+      <SidebarItem
+        :isCollapsed="isCollapsed"
+        :isActive="activeMenus.help"
+        icon="bi bi-person"
+        title="Workspace Name"
+        :hasSubmenu="false"
+        @toggle="$parent.toggleMenu('WorkspaceName')"
+      />
+      <hr style="margin: 0.5rem 0" />
+
+      <SidebarItem
+        :isCollapsed="isCollapsed"
+        :isActive="activeMenus.help"
+        icon="bi bi-box-arrow-right"
+        title="Log Out"
+        :hasSubmenu="false"
+        @toggle="$parent.toggleMenu('Logout')"
+      />
+    </ul>
   </aside>
 </template>
 
