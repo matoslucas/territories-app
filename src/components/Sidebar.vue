@@ -110,7 +110,7 @@ const setActiveSubmenu = (submenu) => {
         icon="bi bi-person"
         title="Workspace Name"
         :hasSubmenu="false"
-        @toggle="$parent.toggleMenu('workspace')"
+        @toggle="toggleMenu('workspace')"
       />
       <hr style="margin: 0.5rem 0" />
 
@@ -119,7 +119,7 @@ const setActiveSubmenu = (submenu) => {
         icon="bi bi-box-arrow-right"
         title="Log Out"
         :hasSubmenu="false"
-        @toggle="$parent.toggleMenu('logout')"
+        @toggle="toggleMenu('logout')"
       />
     </ul>
   </aside>
