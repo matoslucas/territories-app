@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from "vue";
 
 // Define props excluding isCollapsed
 const props = defineProps({
@@ -14,15 +14,26 @@ const props = defineProps({
 const emit = defineEmits(["toggle", "setActiveSubmenu"]);
 
 // Define internal isCollapsed state
-const isCollapsed = ref(false);
+const isCollapsed = ref(true); // Initially collapsed
 
 // Function to toggle isCollapsed state
 const toggleCollapse = () => {
   isCollapsed.value = !isCollapsed.value;
 };
 
+// Watch for changes in isActive prop to auto-expand when active
+watch(
+  () => props.isActive,
+  (newValue) => {
+   
+    if (newValue) {
+      isCollapsed.value = !isCollapsed.value; // Expand when active
+    }
+    // Do nothing when inactive (keep the current collapsed/expanded state)
+  }
+);
+
 const toggleMenu = () => {
- 
   emit("toggle");
 };
 
@@ -33,16 +44,11 @@ const setActiveSubmenu = (submenu) => {
 
 <template>
   <li class="nav-item">
-    <a
-      href="#"
-      class="nav-link"
-     
-      :class="{ active: isActive }"
-    >
-      <i :class="icon"></i>
+    <a href="#" class="nav-link" :class="{ active: isActive }">
+      <i @click="toggleMenu" :class="icon"></i>
       <span @click="toggleMenu">{{ title }}</span>
       <i
-      @click="toggleCollapse"
+        @click="toggleCollapse"
         v-if="hasSubmenu"
         class="bi"
         :class="!isCollapsed ? 'bi-chevron-up' : 'bi-chevron-down'"
@@ -110,7 +116,6 @@ const setActiveSubmenu = (submenu) => {
   position: relative;
   font-weight: 400;
   padding-left: 15px;
-  /* Create space for vertical line */
   width: 100%;
   text-align: left;
 }
@@ -123,7 +128,6 @@ const setActiveSubmenu = (submenu) => {
   height: 100%;
   width: 2px;
   background-color: #d3d3d3;
-  /* Grey for inactive state */
   transition: background-color 0.3s ease;
 }
 
@@ -133,7 +137,6 @@ const setActiveSubmenu = (submenu) => {
 
 .submenu-active .submenu-link::before {
   background-color: #ff6666;
-  /* Red for active state */
 }
 
 .submenu-active .submenu-link {
