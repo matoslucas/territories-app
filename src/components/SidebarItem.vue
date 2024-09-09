@@ -24,10 +24,14 @@ const toggleCollapse = () => {
 // Watch for changes in isActive prop to auto-expand when active
 watch(
   () => props.isActive,
-  (newValue) => {
+  (newValue, oldValue) => {
+
    
     if (newValue) {
-      isCollapsed.value = !isCollapsed.value; // Expand when active
+      isCollapsed.value = false; // Expand when active
+    }
+    if (oldValue) {
+      isCollapsed.value = false; // keep Expanded
     }
     // Do nothing when inactive (keep the current collapsed/expanded state)
   }
